@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:06:10 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/14 23:33:22 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/15 14:55:46 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	ft_destroy_img(t_game_instance *game)
 
 void	cleanup(t_game_instance *game)
 {
-	ft_lstclear(&game->garbage);
 	ft_destroy_img(game);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
+	ft_lstclear(&game->garbage);
 	if (game->map.matrix)
 		free_matrix(game);
 }

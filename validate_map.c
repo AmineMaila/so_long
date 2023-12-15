@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 18:11:20 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/14 22:44:51 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/15 16:08:24 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ void    is_map_valid(t_game_instance *game)
 {
     if (!validate_obj_count(game))
         ft_exit(3, game);
-    else if (!is_map_rectangular(game))
+    if (!is_map_rectangular(game))
 		ft_exit(3, game);
-    else if (!validate_walls(game))
+    if (!validate_walls(game))
         ft_exit(3, game);
 }

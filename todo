@@ -1,3 +1,0 @@
-fix map allocation if there are extra newlines
-nvm || fix player winning even tho didnt collect all keys ||
-fix valid path for every collectable and exit

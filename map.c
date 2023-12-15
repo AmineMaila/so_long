@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:10:19 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/14 23:36:55 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/15 16:09:07 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,15 @@ int	read_map(int fd, t_game_instance *game)
 	{
 		game->map.matrix[i] = get_next_line(fd);
         if (!game->map.matrix[i])
-            return (0);
+            break ;
         if (i != game->map.height - 1)
 		    game->map.matrix[i][ft_strlen(game->map.matrix[i]) - 1] = '\0';
 		i++;
 	}
+    if (game->map.matrix[0] == NULL)
+        return (0);
 	game->map.width = ft_strlen(game->map.matrix[0]);
+    game->map.height = i;
 	game->map.matrix[i] = NULL;
     return (1);
 }
@@ -85,15 +88,6 @@ int map_extension(char *map_path)
     if (ft_strcmp(map_path + len, ".ber"))
         return (0);
     return (1);
-}
-
-void    print_matrix(t_game_instance *game)
-{
-    int i = 0;
-    while (game->map.matrix[i])
-    {
-        ft_printf("%s\n", game->map.matrix[i++]);
-    }
 }
 
 void    ft_open_map(t_game_instance *game)
@@ -117,5 +111,6 @@ void    ft_open_map(t_game_instance *game)
         ft_exit(2, game);
     }
     is_map_valid(game);
+    ft_printf("xx\n");
     close(fd);
 }
