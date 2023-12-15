@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 18:11:20 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/15 16:08:24 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/15 23:06:56 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,7 @@ void    is_map_valid(t_game_instance *game)
 		ft_exit(3, game);
     if (!validate_walls(game))
         ft_exit(3, game);
+	player_exit_pos(game);
+	if (!check_path(game))
+		ft_exit(8, game);
 }

@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:32:19 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/15 18:09:14 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/15 22:49:01 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ int	handle_input(int keysym, t_game_instance *game)
 
 void	ft_play(t_game_instance *game)
 {
-	player_exit_pos(game);
 	ft_draw(game);
 	write_to_display(game);
 	game->obj.moves++;

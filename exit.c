@@ -6,20 +6,20 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:06:10 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/15 16:50:58 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/15 23:24:55 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/so_long.h"
 
-void	free_matrix(t_game_instance *game)
+void	free_matrix(char ***matrix)
 {
 	int	i;
 
 	i = 0;
-	while (game->map.matrix[i])
-		free(game->map.matrix[i++]);
-	free(game->map.matrix);
+	while ((*matrix)[i])
+		free((*matrix)[i++]);
+	free((*matrix));
 }
 
 void	ft_destroy_img(t_game_instance *game)
@@ -49,7 +49,7 @@ void	cleanup(t_game_instance *game)
 		mlx_destroy_window(game->mlx, game->win);
 	ft_lstclear(&game->garbage);
 	if (game->map.matrix)
-		free_matrix(game);
+		free_matrix(&game->map.matrix);
 }
 
 void	ft_exit(int n, t_game_instance *game)
@@ -64,6 +64,8 @@ void	ft_exit(int n, t_game_instance *game)
 		ft_printf("%sYou Won!\n", COLOR_GREEN);
 	else if (n == 7)
 		ft_printf("%sError\nCould not create image!\n", COLOR_RED);
+	else if (n == 8)
+		ft_printf("%sError\nMap does not have a valid path", COLOR_RED);
 	cleanup(game);
 	exit(n);
 }

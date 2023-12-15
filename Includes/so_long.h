@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:02:33 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/15 17:19:46 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/15 23:20:42 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int		map_extension(char *map_path);
 void    ft_open_map(t_game_instance *game);
 
 // error
-void	free_matrix(t_game_instance *game);
+void	free_matrix(char ***matrix);
 void	ft_destroy_img(t_game_instance *game);
 void	ft_exit(int n, t_game_instance *game);
 void	cleanup(t_game_instance *game);
@@ -162,5 +162,8 @@ int		is_map_rectangular(t_game_instance *game);
 int		validate_walls(t_game_instance *game);
 int		validate_obj_count(t_game_instance *game);
 void	obj_count(t_game_instance *game);
+int		check_path(t_game_instance *game);
+int		check_map(char ***tab);
+
 
 #endif
