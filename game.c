@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 16:42:28 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/15 23:10:51 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/15 23:46:49 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
 {
     t_game_instance game;
     
-	atexit(a);
+	//atexit(a);
     game_init(&game);
     if (argc != 2)
         ft_exit(1, &game);

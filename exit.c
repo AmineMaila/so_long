@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:06:10 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/15 23:24:55 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/15 23:51:43 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_exit(int n, t_game_instance *game)
 	else if (n == 7)
 		ft_printf("%sError\nCould not create image!\n", COLOR_RED);
 	else if (n == 8)
-		ft_printf("%sError\nMap does not have a valid path", COLOR_RED);
+		ft_printf("%sError\nMap does not have a valid path\n", COLOR_RED);
 	cleanup(game);
 	exit(n);
 }
