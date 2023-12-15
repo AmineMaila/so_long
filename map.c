@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:10:19 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/15 16:09:07 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/15 16:51:54 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,5 @@ void    ft_open_map(t_game_instance *game)
         ft_exit(2, game);
     }
     is_map_valid(game);
-    ft_printf("xx\n");
     close(fd);
 }

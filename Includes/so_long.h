@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:02:33 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/14 23:29:39 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/15 17:19:46 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define COLOR_GREEN "\033[0;32m"
 
 // controls
+# define ESC 53
 # define UP 126
 # define DOWN 125
 # define RIGHT 124
@@ -118,11 +119,13 @@ void	ft_lstclear(t_list **lst);
 void	ft_lstdelone(t_list *lst);
 t_list	*ft_lstnew(void *content);
 void	del(void *data);
-char	*ft_strcpy(char *s1, char *s2);
+char	*ft_strcpy(char *dest, char *src);
 int		ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
 char	*ft_strncat(char *dest, const char *src, unsigned int nb);
 int		ft_strcmp(char *s1, char *s2);
+char	*ft_itoa(int n);
+char	*ft_strcat(char *dest, char *src);
 
 // get_next_line
 char	*get_next_line(int fd);

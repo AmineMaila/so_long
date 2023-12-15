@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:32:19 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/14 22:50:26 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/15 18:09:14 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,29 @@ void	draw_player(t_game_instance *game, int new_x, int new_y)
 	game->pos.player_pos.x * DIMS, game->pos.player_pos.y * DIMS);
 }
 
-void	new_pos(t_game_instance *game, int x, int y)
+int	write_to_display(t_game_instance *game)
 {
-	int new_x;
-	int new_y;
+	char	*arr;
+	char	*moves;
 
-	new_x = game->pos.player_pos.x + x;
-	new_y = game->pos.player_pos.y + y;
+	moves = ft_itoa(game->obj.moves);
+	if (!moves)
+		ft_exit(2, game);
+	arr = malloc(8 + ft_strlen(moves) + 1);
+	if (!arr)
+		ft_exit(2, game);
+	arr = ft_strcpy(arr, "Moves : ");
+	arr = ft_strcat(arr, moves);
+	mlx_string_put(game->mlx, game->win, 3, 5, 0xFFFFFF, arr);
+	free(arr);
+	free(moves);
+	return (0);
+}
+
+void	new_pos(t_game_instance *game, int new_x, int new_y)
+{
+	int	i;
+
 	if (game->map.matrix[new_y][new_x] == 'E' && game->exit_status == 1)
 		ft_exit(5, game);
 	else if (game->map.matrix[new_y][new_x] != '1' && game->map.matrix[new_y][new_x] != 'E')
@@ -42,11 +58,18 @@ void	new_pos(t_game_instance *game, int x, int y)
 		game->map.matrix[new_y][new_x] = 'P';
 		game->map.matrix[game->pos.player_pos.y][game->pos.player_pos.x] = '0';
 		draw_player(game, new_x, new_y);
-		ft_printf("Moves : %d\n", ++game->obj.moves);
+		i = 0;
+		game->coords.x = 0;
+		while (game->coords.x / 32 < 6)
+		{
+			mlx_put_image_to_window(game->mlx, game->win, game->txt.wall, game->coords.x, 0);
+			game->coords.x += 32;
+		}
+		write_to_display(game);
+		game->obj.moves++;
 		game->pos.player_pos.x = new_x;
 		game->pos.player_pos.y = new_y;
 	}
-	
 }
 
 int	handle_input(int keysym, t_game_instance *game)
@@ -54,13 +77,15 @@ int	handle_input(int keysym, t_game_instance *game)
 	if (game->obj.collectable_count == 0)
 		game->exit_status = 1;
 	if (keysym == UP)
-		new_pos(game, 0, -1);
+		new_pos(game, game->pos.player_pos.x, game->pos.player_pos.y - 1);
 	else if (keysym == DOWN)
-		new_pos(game, 0, 1);
+		new_pos(game, game->pos.player_pos.x, game->pos.player_pos.y + 1);
 	else if (keysym == RIGHT)
-		new_pos(game, 1, 0);
+		new_pos(game, game->pos.player_pos.x + 1, game->pos.player_pos.y);
 	else if (keysym == LEFT)
-		new_pos(game, -1, 0);
+		new_pos(game, game->pos.player_pos.x - 1, game->pos.player_pos.y);
+	else if (keysym == ESC)
+		ft_exit(0, game);
 	return (0);
 }
 
@@ -68,6 +93,8 @@ void	ft_play(t_game_instance *game)
 {
 	player_exit_pos(game);
 	ft_draw(game);
-	ft_printf("Moves : %d\n", game->obj.moves);
+	write_to_display(game);
+	game->obj.moves++;
 	mlx_key_hook(game->win, handle_input, game);
+	//mlx_loop_hook(game->mlx, write_to_display, game);
 }
