@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:32:19 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/16 18:37:48 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/16 20:04:35 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ int	write_to_display(t_game_instance *game)
 	char	*arr;
 	char	*moves;
 
+	game->coords.x = 0;
+	while (game->coords.x / 32 < 6)
+	{
+		mlx_put_image_to_window(game->mlx, game->win,
+			game->txt.wall, game->coords.x, 0);
+		game->coords.x += 32;
+	}
 	moves = ft_itoa(game->obj.moves);
 	if (!moves)
 		ft_exit(2, game);
@@ -51,8 +58,6 @@ int	write_to_display(t_game_instance *game)
 
 void	new_pos(t_game_instance *game, int new_x, int new_y)
 {
-	int	i;
-
 	if (game->map.matrix[new_y][new_x] == 'E' && game->exit_status == 1)
 		ft_exit(5, game);
 	else if (game->map.matrix[new_y][new_x] == 'M')
@@ -65,14 +70,6 @@ void	new_pos(t_game_instance *game, int new_x, int new_y)
 		game->map.matrix[new_y][new_x] = 'P';
 		game->map.matrix[game->pos.player_pos.y][game->pos.player_pos.x] = '0';
 		draw_player(game, new_x, new_y);
-		i = 0;
-		game->coords.x = 0;
-		while (game->coords.x / 32 < 6)
-		{
-			mlx_put_image_to_window(game->mlx, game->win,
-				game->txt.wall, game->coords.x, 0);
-			game->coords.x += 32;
-		}
 		write_to_display(game);
 		game->obj.moves++;
 		game->pos.player_pos.x = new_x;
@@ -82,7 +79,6 @@ void	new_pos(t_game_instance *game, int new_x, int new_y)
 
 int	handle_input(int keysym, t_game_instance *game)
 {
-	ft_printf("%d\n", keysym);
 	if (game->obj.item_count == 0)
 		game->exit_status = 1;
 	if (keysym == UP)
