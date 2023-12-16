@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:02:33 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/16 18:20:42 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/16 22:37:38 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,10 +153,8 @@ int		ft_putnbr_base(size_t nbr, char *base, int *pcount);
 
 // draw
 int		ft_draw(t_game_instance *game);
-void	draw_img(t_game_instance *game, int i, int j);
 
 // positions
-void	check_obj_count(t_game_instance *game);
 void	player_exit_pos(t_game_instance *game);
 
 // events

@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 16:42:28 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/16 20:06:38 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/16 22:05:18 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	game_init(t_game_instance *game)
 	init_img(game);
 }
 
-void	a()
+void	a(void)
 {
 	system("leaks Dungeon_Mage");
 }

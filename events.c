@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:32:19 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/16 18:16:23 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/16 22:42:43 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,11 @@ void	new_pos(t_game_instance *game, int new_x, int new_y)
 	int	i;
 
 	if (game->map.matrix[new_y][new_x] == 'E' && game->exit_status == 1)
+	{
+		game->obj.moves++;
+		write_to_display(game);
 		ft_exit(5, game);
+	}
 	else if (game->map.matrix[new_y][new_x] != '1' &&
 		game->map.matrix[new_y][new_x] != 'E')
 	{
@@ -71,8 +75,8 @@ void	new_pos(t_game_instance *game, int new_x, int new_y)
 				game->txt.wall, game->coords.x, 0);
 			game->coords.x += 32;
 		}
-		write_to_display(game);
 		game->obj.moves++;
+		write_to_display(game);
 		game->pos.player_pos.x = new_x;
 		game->pos.player_pos.y = new_y;
 	}
@@ -104,7 +108,6 @@ void	ft_play(t_game_instance *game)
 {
 	ft_draw(game);
 	write_to_display(game);
-	game->obj.moves++;
 	mlx_hook(game->win, 17, 0, press_x, game);
 	mlx_key_hook(game->win, handle_input, game);
 }

@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 21:13:13 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/16 18:38:11 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/16 22:14:02 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	check_map(char ***tab)
 
 void	flood_fill(char ***tab, int x, int y)
 {
-	if ((*tab)[y][x] != '1' && (*tab)[y][x] != 'F')
+	if ((*tab)[y][x] != '1' && (*tab)[y][x] != 'M' && (*tab)[y][x] != 'F')
 	{
 		(*tab)[y][x] = 'F';
 		flood_fill(tab, x + 1, y);

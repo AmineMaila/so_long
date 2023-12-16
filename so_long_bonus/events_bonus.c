@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:32:19 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/16 20:04:35 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/16 22:42:04 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,11 @@ int	write_to_display(t_game_instance *game)
 void	new_pos(t_game_instance *game, int new_x, int new_y)
 {
 	if (game->map.matrix[new_y][new_x] == 'E' && game->exit_status == 1)
+	{
+		game->obj.moves++;
+		write_to_display(game);
 		ft_exit(5, game);
+	}
 	else if (game->map.matrix[new_y][new_x] == 'M')
 		ft_exit(13, game);
 	else if (game->map.matrix[new_y][new_x] != '1' &&
@@ -70,8 +74,8 @@ void	new_pos(t_game_instance *game, int new_x, int new_y)
 		game->map.matrix[new_y][new_x] = 'P';
 		game->map.matrix[game->pos.player_pos.y][game->pos.player_pos.x] = '0';
 		draw_player(game, new_x, new_y);
-		write_to_display(game);
 		game->obj.moves++;
+		write_to_display(game);
 		game->pos.player_pos.x = new_x;
 		game->pos.player_pos.y = new_y;
 	}
@@ -103,7 +107,6 @@ void	ft_play(t_game_instance *game)
 {
 	ft_draw(game);
 	write_to_display(game);
-	game->obj.moves++;
 	mlx_hook(game->win, 17, 0, press_x, game);
 	mlx_key_hook(game->win, handle_input, game);
 }

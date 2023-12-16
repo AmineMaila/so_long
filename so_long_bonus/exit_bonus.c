@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:06:10 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/16 18:37:55 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/16 22:37:31 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	ft_destroy_img(t_game_instance *game)
 		mlx_destroy_image(game->mlx, game->txt.floor);
 	if (game->txt.wall)
 		mlx_destroy_image(game->mlx, game->txt.wall);
+	if (game->txt.enemy)
+		mlx_destroy_image(game->mlx, game->txt.enemy);
 }
 
 void	cleanup(t_game_instance *game)
@@ -68,7 +70,7 @@ void	ft_exit(int n, t_game_instance *game)
 	else if (n == 8)
 		ft_printf("%sError\nMap does not have a valid path\n", COLOR_RED);
 	else if (n == 13)
-		ft_printf("%sGame Over\n", COLOR_RED);
+		ft_printf("%sYou Lose!\n", COLOR_RED);
 	cleanup(game);
 	exit(n);
 }
