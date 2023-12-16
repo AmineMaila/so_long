@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:06:10 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/17 00:02:09 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/17 00:42:07 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,18 @@ void	ft_destroy_img(t_game_instance *game)
 {
 	if (game->txt.item)
 		mlx_destroy_image(game->mlx, game->txt.item);
-	if (game->txt.down)
-		mlx_destroy_image(game->mlx, game->txt.down);
+	if (game->txt.player)
+		mlx_destroy_image(game->mlx, game->txt.player);
 	if (game->txt.up)
 		mlx_destroy_image(game->mlx, game->txt.up);
 	if (game->txt.left)
 		mlx_destroy_image(game->mlx, game->txt.left);
 	if (game->txt.right)
 		mlx_destroy_image(game->mlx, game->txt.right);
-	if (game->txt.exit_closed)
-		mlx_destroy_image(game->mlx, game->txt.exit_closed);
-	if (game->txt.exit_open)
-		mlx_destroy_image(game->mlx, game->txt.exit_open);
+	if (game->txt.closed)
+		mlx_destroy_image(game->mlx, game->txt.closed);
+	if (game->txt.open)
+		mlx_destroy_image(game->mlx, game->txt.open);
 	if (game->txt.floor)
 		mlx_destroy_image(game->mlx, game->txt.floor);
 	if (game->txt.wall)

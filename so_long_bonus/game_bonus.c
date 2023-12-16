@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 16:42:28 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/17 00:32:20 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/17 00:43:44 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,26 @@ void	make_image(void **txt, char *path, t_game_instance *game)
 void	init_img(t_game_instance *game)
 {
 	make_image(&game->txt.item, "../textures/Key.xpm", game);
-	make_image(&game->txt.down, "../textures/_down.xpm", game);
-	make_image(&game->txt.up, "../textures/_up.xpm", game);
-	make_image(&game->txt.left, "../textures/_left.xpm", game);
-	make_image(&game->txt.right, "../textures/_right.xpm", game);
-	make_image(&game->txt.exit_closed, "../textures/Hatch_closed.xpm", game);
-	make_image(&game->txt.exit_open, "../textures/Hatch_open.xpm", game);
+	make_image(&game->txt.player, "../textures/player.xpm", game);
+	make_image(&game->txt.up, "../textures/_up_bonus.xpm", game);
+	make_image(&game->txt.left, "../textures/_left_bonus.xpm", game);
+	make_image(&game->txt.right, "../textures/_right_bonus.xpm", game);
+	make_image(&game->txt.closed, "../textures/closed.xpm", game);
+	make_image(&game->txt.open, "../textures/open.xpm", game);
 	make_image(&game->txt.floor, "../textures/Floor.xpm", game);
 	make_image(&game->txt.wall, "../textures/Wall.xpm", game);
-	make_image(&game->txt.enemy, "../textures/Enemy.xpm", game);
+	make_image(&game->txt.enemy, "../textures/Enemy_bonus.xpm", game);
 }
 
 void	game_init(t_game_instance *game)
 {
 	game->txt.item = NULL;
-	game->txt.down = NULL;
+	game->txt.player = NULL;
 	game->txt.up = NULL;
 	game->txt.left = NULL;
 	game->txt.right = NULL;
-	game->txt.exit_closed = NULL;
-	game->txt.exit_open = NULL;
+	game->txt.closed = NULL;
+	game->txt.open = NULL;
 	game->txt.floor = NULL;
 	game->txt.wall = NULL;
 	game->txt.enemy = NULL;

@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:32:19 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/17 00:23:06 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/17 00:41:06 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	draw_player(t_game_instance *game, int new_x, int new_y)
 {
 	mlx_put_image_to_window(game->mlx, game->win,
-		game->txt.down, new_x * DIMS, new_y * DIMS);
+		game->txt.player, new_x * DIMS, new_y * DIMS);
 	mlx_put_image_to_window(game->mlx, game->win, game->txt.floor,
 		game->pos.player_pos.x * DIMS, game->pos.player_pos.y * DIMS);
 }
@@ -35,7 +35,7 @@ void	new_pos(t_game_instance *game, int new_x, int new_y)
 			game->obj.item_count--;
 			if (game->obj.item_count == 0)
 			{
-				mlx_put_image_to_window(game->mlx, game->win, game->txt.exit_open,
+				mlx_put_image_to_window(game->mlx, game->win, game->txt.open,
 					game->pos.exit_pos.x * DIMS, game->pos.exit_pos.y * DIMS);
 				game->exit_status = 1;
 			}

@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 17:54:24 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/16 23:52:53 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/17 00:41:00 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_img(t_game_instance *game, int i, int j)
 			game->txt.wall, game->coords.x, game->coords.y);
 	else if (game->map.matrix[i][j] == 'E')
 		mlx_put_image_to_window(game->mlx, game->win,
-			game->txt.exit_closed, game->coords.x, game->coords.y);
+			game->txt.closed, game->coords.x, game->coords.y);
 	else if (game->map.matrix[i][j] == 'C')
 	{
 		mlx_put_image_to_window(game->mlx, game->win,
@@ -32,7 +32,7 @@ void	draw_img(t_game_instance *game, int i, int j)
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->txt.floor, game->coords.x, game->coords.y);
 		mlx_put_image_to_window(game->mlx, game->win,
-			game->txt.down, game->coords.x, game->coords.y);
+			game->txt.player, game->coords.x, game->coords.y);
 	}
 	else if (game->map.matrix[i][j] == '0')
 		mlx_put_image_to_window(game->mlx, game->win,

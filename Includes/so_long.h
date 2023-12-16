@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:02:33 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/17 00:21:34 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/17 00:40:25 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@
 typedef struct s_objects
 {
 	void	*item;
-	void	*down;
+	void	*player;
 	void	*left;
 	void	*right;
 	void	*up;
-	void	*exit_closed;
-	void	*exit_open;
+	void	*closed;
+	void	*open;
 	void	*floor;
 	void	*wall;
 	void	*enemy;
