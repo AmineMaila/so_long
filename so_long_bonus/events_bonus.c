@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:32:19 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/16 22:42:04 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/17 00:30:21 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	write_to_display(t_game_instance *game)
 	char	*arr;
 	char	*moves;
 
+	game->obj.moves++;
 	game->coords.x = 0;
 	while (game->coords.x / 32 < 6)
 	{
@@ -59,22 +60,25 @@ int	write_to_display(t_game_instance *game)
 void	new_pos(t_game_instance *game, int new_x, int new_y)
 {
 	if (game->map.matrix[new_y][new_x] == 'E' && game->exit_status == 1)
-	{
-		game->obj.moves++;
-		write_to_display(game);
 		ft_exit(5, game);
-	}
 	else if (game->map.matrix[new_y][new_x] == 'M')
 		ft_exit(13, game);
 	else if (game->map.matrix[new_y][new_x] != '1' &&
 		game->map.matrix[new_y][new_x] != 'E')
 	{
 		if (game->map.matrix[new_y][new_x] == 'C')
+		{
 			game->obj.item_count--;
+			if (game->obj.item_count == 0)
+			{
+				mlx_put_image_to_window(game->mlx, game->win, game->txt.exit_open,
+					game->pos.exit_pos.x * DIMS, game->pos.exit_pos.y * DIMS);
+				game->exit_status = 1;
+			}
+		}
 		game->map.matrix[new_y][new_x] = 'P';
 		game->map.matrix[game->pos.player_pos.y][game->pos.player_pos.x] = '0';
 		draw_player(game, new_x, new_y);
-		game->obj.moves++;
 		write_to_display(game);
 		game->pos.player_pos.x = new_x;
 		game->pos.player_pos.y = new_y;
@@ -83,21 +87,14 @@ void	new_pos(t_game_instance *game, int new_x, int new_y)
 
 int	handle_input(int keysym, t_game_instance *game)
 {
-	if (game->obj.item_count == 0)
-		game->exit_status = 1;
-	if (keysym == UP)
+	if (keysym == UP || keysym == W)
 		new_pos(game, game->pos.player_pos.x, game->pos.player_pos.y - 1);
-	else if (keysym == DOWN)
+	else if (keysym == DOWN || keysym == S)
 		new_pos(game, game->pos.player_pos.x, game->pos.player_pos.y + 1);
-	else if (keysym == RIGHT)
+	else if (keysym == RIGHT || keysym == D)
 		new_pos(game, game->pos.player_pos.x + 1, game->pos.player_pos.y);
-	else if (keysym == LEFT)
+	else if (keysym == LEFT || keysym == A)
 		new_pos(game, game->pos.player_pos.x - 1, game->pos.player_pos.y);
-	else if (keysym == RESET)
-	{
-		cleanup(game);
-		main(2, game->argv_tmp);
-	}
 	else if (keysym == ESC)
 		ft_exit(0, game);
 	return (0);

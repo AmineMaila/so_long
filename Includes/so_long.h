@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:02:33 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/16 22:37:38 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/17 00:21:34 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@
 # define DOWN 125
 # define RIGHT 124
 # define LEFT 123
-# define RESET 15
+# define W 13
+# define A 0
+# define S 1
+# define D 2
 
 // objects
 # define ITEM 'C'
@@ -48,7 +51,8 @@ typedef struct s_objects
 	void	*left;
 	void	*right;
 	void	*up;
-	void	*exit;
+	void	*exit_closed;
+	void	*exit_open;
 	void	*floor;
 	void	*wall;
 	void	*enemy;

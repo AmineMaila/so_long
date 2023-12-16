@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 17:54:24 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/16 20:01:15 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/17 00:02:56 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	draw_img(t_game_instance *game, int i, int j)
 			game->txt.wall, game->coords.x, game->coords.y);
 	else if (game->map.matrix[i][j] == 'E')
 		mlx_put_image_to_window(game->mlx, game->win,
-			game->txt.exit, game->coords.x, game->coords.y);
+			game->txt.exit_closed, game->coords.x, game->coords.y);
 	else if (game->map.matrix[i][j] == 'C')
 		draw_background(game, game->txt.item);
 	else if (game->map.matrix[i][j] == 'P')

@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 16:42:28 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/16 22:05:18 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/17 00:32:23 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ void	init_img(t_game_instance *game)
 {
 	make_image(&game->txt.item, "textures/Key.xpm", game);
 	make_image(&game->txt.down, "textures/_down.xpm", game);
-	make_image(&game->txt.up, "textures/_up.xpm", game);
-	make_image(&game->txt.left, "textures/_left.xpm", game);
-	make_image(&game->txt.right, "textures/_right.xpm", game);
-	make_image(&game->txt.exit, "textures/Hatch1.xpm", game);
+	make_image(&game->txt.exit_closed, "textures/Hatch_closed.xpm", game);
+	make_image(&game->txt.exit_open, "textures/Hatch_open.xpm", game);
 	make_image(&game->txt.floor, "textures/Floor.xpm", game);
 	make_image(&game->txt.wall, "textures/Wall.xpm", game);
 }
@@ -42,7 +40,8 @@ void	game_init(t_game_instance *game)
 	game->txt.up = NULL;
 	game->txt.left = NULL;
 	game->txt.right = NULL;
-	game->txt.exit = NULL;
+	game->txt.exit_closed = NULL;
+	game->txt.exit_open = NULL;
 	game->txt.floor = NULL;
 	game->txt.wall = NULL;
 	game->garbage = NULL;
@@ -69,7 +68,7 @@ int	main(int argc, char *argv[])
 {
 	t_game_instance	game;
 
-	atexit(a);
+	//atexit(a);
 	game_init(&game);
 	if (argc != 2)
 		ft_exit(1, &game);

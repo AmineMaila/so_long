@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 16:42:28 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/16 22:40:00 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/17 00:32:20 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	init_img(t_game_instance *game)
 	make_image(&game->txt.up, "../textures/_up.xpm", game);
 	make_image(&game->txt.left, "../textures/_left.xpm", game);
 	make_image(&game->txt.right, "../textures/_right.xpm", game);
-	make_image(&game->txt.exit, "../textures/Hatch1.xpm", game);
+	make_image(&game->txt.exit_closed, "../textures/Hatch_closed.xpm", game);
+	make_image(&game->txt.exit_open, "../textures/Hatch_open.xpm", game);
 	make_image(&game->txt.floor, "../textures/Floor.xpm", game);
 	make_image(&game->txt.wall, "../textures/Wall.xpm", game);
 	make_image(&game->txt.enemy, "../textures/Enemy.xpm", game);
@@ -42,9 +43,11 @@ void	game_init(t_game_instance *game)
 	game->txt.up = NULL;
 	game->txt.left = NULL;
 	game->txt.right = NULL;
-	game->txt.exit = NULL;
+	game->txt.exit_closed = NULL;
+	game->txt.exit_open = NULL;
 	game->txt.floor = NULL;
 	game->txt.wall = NULL;
+	game->txt.enemy = NULL;
 	game->garbage = NULL;
 	game->win = NULL;
 	game->map.matrix = NULL;
@@ -54,7 +57,7 @@ void	game_init(t_game_instance *game)
 	ft_lstadd_back(&game->garbage, game->mlx);
 	game->obj.player_count = 0;
 	game->obj.exit_count = 0;
-	game->obj.moves = 0;
+	game->obj.moves = -1;
 	game->obj.item_count = 0;
 	game->exit_status = 0;
 	init_img(game);
