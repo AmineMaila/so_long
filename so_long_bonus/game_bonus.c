@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   game_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 16:42:28 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/16 17:44:45 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/16 18:49:35 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Includes/so_long.h"
-#include <stdio.h>
+#include "../Includes/so_long.h"
 
 void	make_image(void **txt, char *path, t_game_instance *game)
 {
@@ -25,14 +24,15 @@ void	make_image(void **txt, char *path, t_game_instance *game)
 
 void	init_img(t_game_instance *game)
 {
-	make_image(&game->txt.item, "textures/Key.xpm", game);
-	make_image(&game->txt.down, "textures/_down.xpm", game);
-	make_image(&game->txt.up, "textures/_up.xpm", game);
-	make_image(&game->txt.left, "textures/_left.xpm", game);
-	make_image(&game->txt.right, "textures/_right.xpm", game);
-	make_image(&game->txt.exit, "textures/Hatch1.xpm", game);
-	make_image(&game->txt.floor, "textures/Floor.xpm", game);
-	make_image(&game->txt.wall, "textures/Wall.xpm", game);
+	make_image(&game->txt.item, "textures_bonus/Key.xpm", game);
+	make_image(&game->txt.down, "textures_bonus/_down.xpm", game);
+	make_image(&game->txt.up, "textures_bonus/_up.xpm", game);
+	make_image(&game->txt.left, "textures_bonus/_left.xpm", game);
+	make_image(&game->txt.right, "textures_bonus/_right.xpm", game);
+	make_image(&game->txt.exit, "textures_bonus/Hatch1.xpm", game);
+	make_image(&game->txt.floor, "textures_bonus/Floor.xpm", game);
+	make_image(&game->txt.wall, "textures_bonus/Wall.xpm", game);
+	make_image(&game->txt.enemy, "textures_bonus/Enemy.xpm", game);
 }
 
 void	game_init(t_game_instance *game)

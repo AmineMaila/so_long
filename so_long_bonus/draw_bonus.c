@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   draw_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 17:54:24 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/16 15:22:11 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/16 18:37:26 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Includes/so_long.h"
+#include "../Includes/so_long.h"
 
 void	draw_img(t_game_instance *game, int i, int j)
 {
@@ -37,6 +37,13 @@ void	draw_img(t_game_instance *game, int i, int j)
 	else if (game->map.matrix[i][j] == '0')
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->txt.floor, game->coords.x, game->coords.y);
+	else if (game->map.matrix[i][j] == 'M')
+	{
+		mlx_put_image_to_window(game->mlx, game->win,
+			game->txt.floor, game->coords.x, game->coords.y);
+		mlx_put_image_to_window(game->mlx, game->win,
+			game->txt.enemy, game->coords.x, game->coords.y);
+	}
 }
 
 int	ft_draw(t_game_instance *game)

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   events_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:32:19 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/16 18:16:23 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/16 18:37:48 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Includes/so_long.h"
+#include "../Includes/so_long.h"
 
 void	draw_player(t_game_instance *game, int new_x, int new_y)
 {
@@ -55,6 +55,8 @@ void	new_pos(t_game_instance *game, int new_x, int new_y)
 
 	if (game->map.matrix[new_y][new_x] == 'E' && game->exit_status == 1)
 		ft_exit(5, game);
+	else if (game->map.matrix[new_y][new_x] == 'M')
+		ft_exit(13, game);
 	else if (game->map.matrix[new_y][new_x] != '1' &&
 		game->map.matrix[new_y][new_x] != 'E')
 	{
@@ -80,6 +82,7 @@ void	new_pos(t_game_instance *game, int new_x, int new_y)
 
 int	handle_input(int keysym, t_game_instance *game)
 {
+	ft_printf("%d\n", keysym);
 	if (game->obj.item_count == 0)
 		game->exit_status = 1;
 	if (keysym == UP)

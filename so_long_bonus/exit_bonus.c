@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   exit_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:06:10 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/16 16:11:19 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/16 18:37:55 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Includes/so_long.h"
+#include "../Includes/so_long.h"
 
 void	free_matrix(char ***matrix)
 {
@@ -67,6 +67,8 @@ void	ft_exit(int n, t_game_instance *game)
 		ft_printf("%sError\nCould not create image!\n", COLOR_RED);
 	else if (n == 8)
 		ft_printf("%sError\nMap does not have a valid path\n", COLOR_RED);
+	else if (n == 13)
+		ft_printf("%sGame Over\n", COLOR_RED);
 	cleanup(game);
 	exit(n);
 }

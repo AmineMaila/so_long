@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   backtrack.c                                        :+:      :+:    :+:   */
+/*   validate_path.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 21:13:13 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/15 23:28:13 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/16 15:01:19 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/so_long.h"
 
-int check_map(char ***tab)
+int	check_map(char ***tab)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while ((*tab)[i])
@@ -38,9 +38,9 @@ int check_map(char ***tab)
 
 void	flood_fill(char ***tab, int x, int y)
 {
-	if ((*tab)[y][x] != '1' && (*tab)[y][x] != 'P')
+	if ((*tab)[y][x] != '1' && (*tab)[y][x] != 'F')
 	{
-		(*tab)[y][x] = 'P';
+		(*tab)[y][x] = 'F';
 		flood_fill(tab, x + 1, y);
 		flood_fill(tab, x - 1, y);
 		flood_fill(tab, x, y + 1);
@@ -48,12 +48,12 @@ void	flood_fill(char ***tab, int x, int y)
 	}
 }
 
-int check_path(t_game_instance *game)
+int	check_path(t_game_instance *game)
 {
-	int     i;
-	int     j;
-	int     len;
-	char    **matrix_cpy;
+	int		i;
+	int		j;
+	int		len;
+	char	**matrix_cpy;
 
 	i = 0;
 	while (game->map.matrix[i])
@@ -73,6 +73,6 @@ int check_path(t_game_instance *game)
 		matrix_cpy[i++][j] = '\0';
 	}
 	matrix_cpy[i] = NULL;
-	flood_fill(&matrix_cpy, game->pos.player_pos.x + 1, game->pos.player_pos.y);
+	flood_fill(&matrix_cpy, game->pos.player_pos.x, game->pos.player_pos.y);
 	return (check_map(&matrix_cpy));
 }

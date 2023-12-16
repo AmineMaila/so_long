@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_map.c                                     :+:      :+:    :+:   */
+/*   validate_map_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 18:11:20 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/16 15:08:49 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/16 18:38:07 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Includes/so_long.h"
+#include "../Includes/so_long.h"
 
 void	obj_count(t_game_instance *game)
 {
@@ -31,7 +31,7 @@ void	obj_count(t_game_instance *game)
 				game->obj.exit_count++;
 			else if (game->map.matrix[i][j] == '0')
 				game->obj.floor_count++;
-			else if (game->map.matrix[i][j] != '1')
+			else if (game->map.matrix[i][j] != '1' && game->map.matrix[i][j] != 'M')
 				ft_exit(3, game);
 			j++;
 		}

@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   positions_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/15 17:13:39 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/16 15:04:13 by mmaila           ###   ########.fr       */
+/*   Created: 2023/12/12 14:06:19 by mmaila            #+#    #+#             */
+/*   Updated: 2023/12/16 18:38:04 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Includes/so_long.h"
+#include "../Includes/so_long.h"
 
-char	*ft_strcat(char *dest, char *src)
+void	player_exit_pos(t_game_instance *game)
 {
 	int	i;
 	int	j;
 
-	i = ft_strlen(dest);
-	j = 0;
-	while (src[j])
+	i = 0;
+	while (game->map.matrix[i])
 	{
-		dest[i] = src[j];
+		j = 0;
+		while (game->map.matrix[i][j])
+		{
+			if (game->map.matrix[i][j] == 'P')
+			{
+				game->pos.player_pos.x = j;
+				game->pos.player_pos.y = i;
+			}
+			else if (game->map.matrix[i][j] == 'E')
+			{
+				game->pos.exit_pos.x = j;
+				game->pos.exit_pos.y = i;
+			}
+			j++;
+		}
 		i++;
-		j++;
 	}
-	dest[i] = '\0';
-	return (dest);
 }

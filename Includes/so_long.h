@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:02:33 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/15 23:20:42 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/16 18:20:42 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,54 +32,56 @@
 # define DOWN 125
 # define RIGHT 124
 # define LEFT 123
+# define RESET 15
 
 // objects
-# define COLLECTABLE 'C'
+# define ITEM 'C'
 # define PLAYER 'P'
 # define EXIT 'E'
 # define FLOOR '0'
 # define WALL '1'
 
-typedef struct	s_objects
+typedef struct s_objects
 {
-	void	*collectable;
-	void	*player;
-	void	*player_left;
-	void	*player_right;
-	void	*player_up;
+	void	*item;
+	void	*down;
+	void	*left;
+	void	*right;
+	void	*up;
 	void	*exit;
 	void	*floor;
 	void	*wall;
+	void	*enemy;
 }				t_objects;
 
-typedef struct	s_count
+typedef struct s_count
 {
 	int	player_count;
 	int	exit_count;
-	int	collectable_count;
-	int floor_count;
+	int	item_count;
+	int	floor_count;
 	int	moves;
 }				t_count;
 
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*data;
-	struct s_list   *next;
+	struct s_list	*next;
 }				t_list;
 
-typedef struct	s_coordinate
+typedef struct s_coordinate
 {
 	int	x;
 	int	y;
 }				t_coordinate;
 
-typedef struct	s_position
+typedef struct s_position
 {
 	t_coordinate	player_pos;
 	t_coordinate	exit_pos;
 }				t_position;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	char	*filename;
 	int		width;
@@ -87,11 +89,12 @@ typedef struct	s_map
 	char	**matrix;
 }				t_map;
 
-typedef struct	s_game_instance
+typedef struct s_game_instance
 {
 	void			*mlx;
 	void			*win;
 	int				exit_status;
+	char			**argv_tmp;
 	t_list			*garbage;
 	t_map			map;
 	t_coordinate	coords;
@@ -100,14 +103,18 @@ typedef struct	s_game_instance
 	t_objects		txt;
 }				t_game_instance;
 
+// main
+int		main(int argc, char *argv[]);
+
 // map
 int		open_map_height(char *filename);
 int		map_height(int fd);
 int		read_map(int fd, t_game_instance *game);
 int		map_extension(char *map_path);
-void    ft_open_map(t_game_instance *game);
+void	ft_open_map(t_game_instance *game);
 
 // error
+int		press_x(t_game_instance *game);
 void	free_matrix(char ***matrix);
 void	ft_destroy_img(t_game_instance *game);
 void	ft_exit(int n, t_game_instance *game);
@@ -146,7 +153,7 @@ int		ft_putnbr_base(size_t nbr, char *base, int *pcount);
 
 // draw
 int		ft_draw(t_game_instance *game);
-void	draw_image_type(t_game_instance *game);
+void	draw_img(t_game_instance *game, int i, int j);
 
 // positions
 void	check_obj_count(t_game_instance *game);
@@ -157,13 +164,12 @@ int		handle_input(int keysym, t_game_instance *game);
 void	ft_play(t_game_instance *game);
 
 // map valid
-void    is_map_valid(t_game_instance *game);
+void	is_map_valid(t_game_instance *game);
 int		is_map_rectangular(t_game_instance *game);
 int		validate_walls(t_game_instance *game);
 int		validate_obj_count(t_game_instance *game);
 void	obj_count(t_game_instance *game);
 int		check_path(t_game_instance *game);
 int		check_map(char ***tab);
-
 
 #endif
