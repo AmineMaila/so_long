@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 16:42:28 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/17 00:32:23 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/17 00:35:02 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,10 @@ void	game_init(t_game_instance *game)
 	init_img(game);
 }
 
-void	a(void)
-{
-	system("leaks Dungeon_Mage");
-}
-
 int	main(int argc, char *argv[])
 {
 	t_game_instance	game;
 
-	//atexit(a);
 	game_init(&game);
 	if (argc != 2)
 		ft_exit(1, &game);
