@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:02:33 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/17 14:58:56 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/17 15:16:53 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,6 @@
 # define A 0
 # define S 1
 # define D 2
-
-// objects
-# define ITEM 'C'
-# define PLAYER 'P'
-# define EXIT 'E'
-# define FLOOR '0'
-# define WALL '1'
 
 typedef struct s_objects
 {
