@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:02:33 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/17 00:40:25 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/17 14:58:56 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,6 @@ typedef struct s_count
 	int	moves;
 }				t_count;
 
-typedef struct s_list
-{
-	void			*data;
-	struct s_list	*next;
-}				t_list;
-
 typedef struct s_coordinate
 {
 	int	x;
@@ -98,8 +92,6 @@ typedef struct s_game_instance
 	void			*mlx;
 	void			*win;
 	int				exit_status;
-	char			**argv_tmp;
-	t_list			*garbage;
 	t_map			map;
 	t_coordinate	coords;
 	t_position		pos;
@@ -125,10 +117,6 @@ void	ft_exit(int n, t_game_instance *game);
 void	cleanup(t_game_instance *game);
 
 // libft
-void	ft_lstadd_back(t_list **lst, void *data);
-void	ft_lstclear(t_list **lst);
-void	ft_lstdelone(t_list *lst);
-t_list	*ft_lstnew(void *content);
 void	del(void *data);
 char	*ft_strcpy(char *dest, char *src);
 int		ft_strlen(const char *s);

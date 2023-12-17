@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 16:42:28 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/17 00:47:46 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/17 14:59:02 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,11 @@ void	game_init(t_game_instance *game)
 	game->txt.open = NULL;
 	game->txt.floor = NULL;
 	game->txt.wall = NULL;
-	game->garbage = NULL;
 	game->win = NULL;
 	game->map.matrix = NULL;
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		ft_exit(2, game);
-	ft_lstadd_back(&game->garbage, game->mlx);
 	game->obj.player_count = 0;
 	game->obj.exit_count = 0;
 	game->obj.moves = 0;
@@ -66,7 +64,6 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 		ft_exit(1, &game);
 	game.map.filename = argv[1];
-	game.argv_tmp = argv;
 	ft_open_map(&game);
 	game.win = mlx_new_window(game.mlx, game.map.width * DIMS,
 			game.map.height * DIMS, "Dungeon Mage");
