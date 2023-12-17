@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:10:19 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/17 14:20:01 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/17 17:07:23 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	map_extension(char *map_path)
 	int	len;
 
 	len = ft_strlen(map_path);
-	if (len < 5)
+	if (len < 4)
 		return (0);
 	len -= 4;
 	if (ft_strcmp(map_path + len, ".ber"))
