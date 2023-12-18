@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 16:42:28 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/17 14:59:06 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/18 01:01:30 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	init_img(t_game_instance *game)
 
 void	game_init(t_game_instance *game)
 {
+	game->txt.enemy = NULL;
 	game->txt.item = NULL;
 	game->txt.player = NULL;
 	game->txt.up = NULL;
@@ -47,7 +48,6 @@ void	game_init(t_game_instance *game)
 	game->txt.open = NULL;
 	game->txt.floor = NULL;
 	game->txt.wall = NULL;
-	game->txt.enemy = NULL;
 	game->win = NULL;
 	game->map.matrix = NULL;
 	game->mlx = mlx_init();
@@ -58,6 +58,8 @@ void	game_init(t_game_instance *game)
 	game->obj.moves = -1;
 	game->obj.item_count = 0;
 	game->exit_status = 0;
+	game->was_exit = 0;
+	game->draw_exit = 0;
 	init_img(game);
 }
 

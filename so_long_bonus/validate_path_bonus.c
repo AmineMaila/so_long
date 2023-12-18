@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 21:13:13 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/16 22:14:02 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/17 21:56:08 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,6 @@ int	check_path(t_game_instance *game)
 		matrix_cpy[i++][j] = '\0';
 	}
 	matrix_cpy[i] = NULL;
-	flood_fill(&matrix_cpy, game->pos.player_pos.x, game->pos.player_pos.y);
+	flood_fill(&matrix_cpy, game->pos.p_pos.x, game->pos.p_pos.y);
 	return (check_map(&matrix_cpy));
 }

@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:02:33 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/17 15:16:53 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/18 01:01:40 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ typedef struct s_coordinate
 
 typedef struct s_position
 {
-	t_coordinate	player_pos;
-	t_coordinate	exit_pos;
+	t_coordinate	p_pos;
+	t_coordinate	e_pos;
 }				t_position;
 
 typedef struct s_map
@@ -85,6 +85,8 @@ typedef struct s_game_instance
 	void			*mlx;
 	void			*win;
 	int				exit_status;
+	int				was_exit;
+	int				draw_exit;
 	t_map			map;
 	t_coordinate	coords;
 	t_position		pos;
@@ -140,6 +142,7 @@ int		ft_putnbr_base(size_t nbr, char *base, int *pcount);
 int		ft_draw(t_game_instance *game);
 
 // positions
+void	track_item(t_game_instance *game);
 void	player_exit_pos(t_game_instance *game);
 
 // events

@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:32:19 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/17 00:41:30 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/18 01:04:43 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,27 @@
 
 void	draw_player(t_game_instance *game, int new_x, int new_y)
 {
-	if (new_x > game->pos.player_pos.x)
+	if (new_x > game->pos.p_pos.x)
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->txt.right, new_x * DIMS, new_y * DIMS);
-	else if (new_x < game->pos.player_pos.x)
+	else if (new_x < game->pos.p_pos.x)
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->txt.left, new_x * DIMS, new_y * DIMS);
-	else if (new_y > game->pos.player_pos.y)
+	else if (new_y > game->pos.p_pos.y)
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->txt.player, new_x * DIMS, new_y * DIMS);
-	else if (new_y < game->pos.player_pos.y)
+	else if (new_y < game->pos.p_pos.y)
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->txt.up, new_x * DIMS, new_y * DIMS);
-	mlx_put_image_to_window(game->mlx, game->win, game->txt.floor,
-		game->pos.player_pos.x * DIMS, game->pos.player_pos.y * DIMS);
+	if (game->draw_exit == 1)
+	{
+		mlx_put_image_to_window(game->mlx, game->win, game->txt.closed,
+			game->pos.p_pos.x * DIMS, game->pos.p_pos.y * DIMS);
+		game->draw_exit = 0;
+	}
+	else
+		mlx_put_image_to_window(game->mlx, game->win, game->txt.floor,
+			game->pos.p_pos.x * DIMS, game->pos.p_pos.y * DIMS);
 }
 
 int	write_to_display(t_game_instance *game)
@@ -63,38 +70,38 @@ void	new_pos(t_game_instance *game, int new_x, int new_y)
 		ft_exit(5, game);
 	else if (game->map.matrix[new_y][new_x] == 'M')
 		ft_exit(13, game);
-	else if (game->map.matrix[new_y][new_x] != '1' &&
-		game->map.matrix[new_y][new_x] != 'E')
+	else if (game->map.matrix[new_y][new_x] != '1')
 	{
-		if (game->map.matrix[new_y][new_x] == 'C')
+		if (game->was_exit == 1)
 		{
-			game->obj.item_count--;
-			if (game->obj.item_count == 0)
-			{
-				mlx_put_image_to_window(game->mlx, game->win, game->txt.open,
-					game->pos.exit_pos.x * DIMS, game->pos.exit_pos.y * DIMS);
-				game->exit_status = 1;
-			}
+			game->map.matrix[game->pos.p_pos.y][game->pos.p_pos.x] = 'E';
+			game->was_exit = 0;
+			game->draw_exit = 1;
 		}
+		else
+			game->map.matrix[game->pos.p_pos.y][game->pos.p_pos.x] = '0';
+		if (game->map.matrix[new_y][new_x] == 'C')
+			track_item(game);
+		if (game->map.matrix[new_y][new_x] == 'E')
+			game->was_exit = 1;
 		game->map.matrix[new_y][new_x] = 'P';
-		game->map.matrix[game->pos.player_pos.y][game->pos.player_pos.x] = '0';
 		draw_player(game, new_x, new_y);
 		write_to_display(game);
-		game->pos.player_pos.x = new_x;
-		game->pos.player_pos.y = new_y;
+		game->pos.p_pos.x = new_x;
+		game->pos.p_pos.y = new_y;
 	}
 }
 
 int	handle_input(int keysym, t_game_instance *game)
 {
 	if (keysym == UP || keysym == W)
-		new_pos(game, game->pos.player_pos.x, game->pos.player_pos.y - 1);
+		new_pos(game, game->pos.p_pos.x, game->pos.p_pos.y - 1);
 	else if (keysym == DOWN || keysym == S)
-		new_pos(game, game->pos.player_pos.x, game->pos.player_pos.y + 1);
+		new_pos(game, game->pos.p_pos.x, game->pos.p_pos.y + 1);
 	else if (keysym == RIGHT || keysym == D)
-		new_pos(game, game->pos.player_pos.x + 1, game->pos.player_pos.y);
+		new_pos(game, game->pos.p_pos.x + 1, game->pos.p_pos.y);
 	else if (keysym == LEFT || keysym == A)
-		new_pos(game, game->pos.player_pos.x - 1, game->pos.player_pos.y);
+		new_pos(game, game->pos.p_pos.x - 1, game->pos.p_pos.y);
 	else if (keysym == ESC)
 		ft_exit(0, game);
 	return (0);

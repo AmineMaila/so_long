@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 16:42:28 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/17 14:59:02 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/17 22:04:22 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	game_init(t_game_instance *game)
 	game->obj.moves = 0;
 	game->obj.item_count = 0;
 	game->exit_status = 0;
+	game->was_exit = 0;
+	game->draw_exit = 0;
 	init_img(game);
 }
 
