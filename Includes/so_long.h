@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:02:33 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/18 01:01:40 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/18 15:08:46 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct s_objects
 	void	*floor;
 	void	*wall;
 	void	*enemy;
+	void	*e_right;
+	void	*e_left;
 }				t_objects;
 
 typedef struct s_count
@@ -70,6 +72,7 @@ typedef struct s_position
 {
 	t_coordinate	p_pos;
 	t_coordinate	e_pos;
+	t_coordinate	m_pos;
 }				t_position;
 
 typedef struct s_map
@@ -87,6 +90,7 @@ typedef struct s_game_instance
 	int				exit_status;
 	int				was_exit;
 	int				draw_exit;
+	int				move;
 	t_map			map;
 	t_coordinate	coords;
 	t_position		pos;
@@ -157,5 +161,8 @@ int		validate_obj_count(t_game_instance *game);
 void	obj_count(t_game_instance *game);
 int		check_path(t_game_instance *game);
 int		check_map(char ***tab);
+
+// enemy
+int		move_enemy(t_game_instance *game);
 
 #endif

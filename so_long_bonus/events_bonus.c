@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:32:19 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/18 01:04:43 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/18 15:19:47 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	new_pos(t_game_instance *game, int new_x, int new_y)
 		game->pos.p_pos.x = new_x;
 		game->pos.p_pos.y = new_y;
 	}
+	move_enemy(game);
 }
 
 int	handle_input(int keysym, t_game_instance *game)
@@ -109,6 +110,7 @@ int	handle_input(int keysym, t_game_instance *game)
 
 void	ft_play(t_game_instance *game)
 {
+	game->move = 1;
 	ft_draw(game);
 	write_to_display(game);
 	mlx_hook(game->win, 17, 0, press_x, game);

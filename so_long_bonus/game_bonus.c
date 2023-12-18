@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 16:42:28 by mmaila            #+#    #+#             */
-/*   Updated: 2023/12/18 01:01:30 by mmaila           ###   ########.fr       */
+/*   Updated: 2023/12/18 15:04:12 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,15 @@ void	init_img(t_game_instance *game)
 	make_image(&game->txt.floor, "../textures/Floor.xpm", game);
 	make_image(&game->txt.wall, "../textures/Wall.xpm", game);
 	make_image(&game->txt.enemy, "../textures/Enemy_bonus.xpm", game);
+	make_image(&game->txt.e_left, "../textures/e_left.xpm", game);
+	make_image(&game->txt.e_right, "../textures/e_right.xpm", game);
 }
 
 void	game_init(t_game_instance *game)
 {
 	game->txt.enemy = NULL;
+	game->txt.e_left = NULL;
+	game->txt.e_right = NULL;
 	game->txt.item = NULL;
 	game->txt.player = NULL;
 	game->txt.up = NULL;
